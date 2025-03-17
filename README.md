@@ -3,7 +3,7 @@ Shannon Nix - Senior Project Manager Portfolio
 
 This repository hosts my professional portfolio, showcasing my experience in project management, SaaS operations, workflow automation, and strategic leadership.
 
-🔗 Live Portfolio: Shannon Nix Portfolio
+🔗 Live Portfolio: https://shannonnixproject.github.io/ManagerPortfolio/
 
 📌 About This Portfolio
 This portfolio highlights:
