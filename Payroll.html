@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shannon Nix - Payroll Optimization Project</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Great+Vibes&family=Alex+Brush&family=Tangerine&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <nav aria-label="Skip navigation">
+            <a href="#main-content" class="skip-link">Skip to Main Content</a>
+            <a href="#navigation" class="skip-link">Skip to Navigation</a>
+            <a href="#footer" class="skip-link">Skip to Footer</a>
+        </nav>
+        <nav>
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" aria-label="Toggle navigation" aria-controls="navigation" aria-expanded="false">&#9776;</button>
+    
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navigation">
+               
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#employment">Employment</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#volunteer">Volunteer</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="main-content">
+            <h1>Payroll Optimization Project</h1>
+        </section>
+
+        <section class="project-details">
+            <h2>Step-by-Step Waterfall Process</h2>
+
+            <!-- Phase 1: Initiation -->
+            <article>
+                <h3>1. Initiation (Identified the Need & Defined the Business Case)</h3>
+                <ul>
+                    <li><strong>Problem Statement:</strong> Payroll processes were inefficient, leading to errors and compliance risks.</li>
+                    <li><strong>Business Need:</strong> Implement an automated payroll system across 14 entities.</li>
+                    <li><strong>Key Challenge:</strong> The existing system was outdated and required excessive manual work.</li>
+                    <li><strong>Stakeholder Alignment:</strong> Conducted leadership and department meetings for requirement gathering.</li>
+                </ul>
+            </article>
+
+            <!-- Phase 2: Planning -->
+            <article>
+                <h3>2. Planning (Developed the Payroll Optimization Strategy)</h3>
+                <ul>
+                    <li><strong>Project Roadmap:</strong> Defined a structured 6-month implementation plan.</li>
+                    <li><strong>Scope Definition:</strong> Established automation goals, compliance requirements, and reporting needs.</li>
+                    <li><strong>Risk Assessment:</strong> Identified integration risks and developed mitigation strategies.</li>
+                    <li><strong>Training Plan:</strong> 
+                        <ul>
+                            <li>Developed training materials and live workshops.</li>
+                            <li>Provided hands-on payroll training before rollout.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Phase 3: Execution -->
+            <article>
+                <h3>3. Execution (Implementing the New Payroll System)</h3>
+                <ul>
+                    <li><strong>System Implementation:</strong> Deployed the payroll software and configured automation.</li>
+                    <li><strong>Standardized Processes:</strong> Established payroll workflows to ensure consistency.</li>
+                    <li><strong>Employee Training:</strong> Conducted interactive training sessions and created support channels.</li>
+                </ul>
+            </article>
+
+            <!-- Phase 4: Monitoring & Controlling -->
+            <article>
+                <h3>4. Monitoring & Controlling (Testing, Optimization & Risk Management)</h3>
+                <ul>
+                    <li><strong>Data Validation:</strong> Ran parallel payroll cycles to ensure accuracy.</li>
+                    <li><strong>Issue Resolution:</strong> Addressed compliance issues before full deployment.</li>
+                    <li><strong>Performance Monitoring:</strong> Tracked efficiency improvements and payroll processing speed.</li>
+                </ul>
+            </article>
+
+            <!-- Phase 5: Closure -->
+            <article>
+                <h3>5. Closure (Results, Lessons Learned & Handoff to Operations)</h3>
+                <ul>
+                    <li><strong>Final Outcomes:</strong> 
+                        <ul>
+                            <li>40% reduction in payroll processing time.</li>
+                            <li>Improved payroll accuracy, reducing compliance risks.</li>
+                            <li>Standardized payroll procedures across all entities.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Lessons Learned:</strong> 
+                        <ul>
+                            <li>Automation minimizes errors and manual workload.</li>
+                            <li>Comprehensive training ensures smooth adoption.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Handoff to Operations:</strong> 
+                        <ul>
+                            <li>Created process documentation for payroll teams.</li>
+                            <li>Established ongoing support and maintenance guidelines.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>Site created by Shannon Nix using Visual Studio Code, HTML, CSS, JavaScript, & GitHub</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top">↑</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.querySelector(".hamburger-menu");
+            const navMenu = document.querySelector(".nav-menu");
+
+            menuButton.addEventListener("click", function () {
+                navMenu.classList.toggle("show");
+            });
+
+            document.querySelectorAll(".nav-menu li a").forEach(item => {
+                item.addEventListener("click", function (event) {
+                    //event.preventDefault();
+                    const targetId = this.getAttribute("href").substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 50,
+                            behavior: "smooth"
+                        });
+                    }
+
+                    navMenu.classList.remove("show");
+                });
+            });
+        });
+    
+function scrollToTop(event) {
+    if (window.location.pathname === "/Home.html") {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+}
+
+</script>
+
+    
+
+</body>
+</html>
