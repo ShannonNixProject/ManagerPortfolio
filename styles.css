@@ -59,6 +59,11 @@ a:hover::after {
     font-size: 1.2em;
 }
 
+.checklist {
+    list-style: none; /* Removes bullets only for this list */
+    padding: 0;
+}
+
 
 .signature {
     font-family: 'Alex Brush', cursive;

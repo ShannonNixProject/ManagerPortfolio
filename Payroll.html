@@ -31,6 +31,8 @@
                     <li><a href="index.html#projects">Projects</a></li>
                     <li><a href="index.html#employment">Employment</a></li>
                     <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#volunteer">Volunteer</a></li>
                     
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
@@ -120,49 +122,94 @@
                 </ul>
             </article>
         </section>
+        <!-- Back to Top Button -->
+<button id="backToTop" title="Back to Top">↑</button>
     </main>
     <footer>
         <p>Site created by Shannon Nix using Visual Studio Code, HTML, CSS, JavaScript, & GitHub</p>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" title="Back to Top">↑</button>
+ 
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Hamburger Menu Toggle
             const menuButton = document.querySelector(".hamburger-menu");
             const navMenu = document.querySelector(".nav-menu");
-
-            menuButton.addEventListener("click", function () {
-                navMenu.classList.toggle("show");
-            });
-
-            document.querySelectorAll(".nav-menu li a").forEach(item => {
-                item.addEventListener("click", function (event) {
-                    //event.preventDefault();
-                    const targetId = this.getAttribute("href").substring(1);
-                    const targetElement = document.getElementById(targetId);
-
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 50,
-                            behavior: "smooth"
-                        });
-                    }
-
-                    navMenu.classList.remove("show");
+    
+            if (menuButton && navMenu) {
+                menuButton.addEventListener("click", function () {
+                    navMenu.classList.toggle("show");
                 });
+    
+                document.querySelectorAll(".nav-menu li a").forEach(item => {
+                    item.addEventListener("click", function (event) {
+                        const targetId = this.getAttribute("href").substring(1);
+                        const targetElement = document.getElementById(targetId);
+    
+                        if (targetElement) {
+                            event.preventDefault();
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 50,
+                                behavior: "smooth"
+                            });
+                        }
+    
+                        navMenu.classList.remove("show");
+                    });
+                });
+            }
+    
+            // Ensure page starts at the top on refresh
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+    
+            // Back to Top Button
+            const backToTopButton = document.getElementById("backToTop");
+    
+            if (backToTopButton) {
+                // Show button when scrolling down
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 200) { // Adjust this value as needed
+                        backToTopButton.classList.add("show");
+                    } else {
+                        backToTopButton.classList.remove("show");
+                    }
+                });
+    
+                // Scroll to top smoothly when clicked
+                backToTopButton.addEventListener("click", function () {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            }
+    
+            // Accessible Menu Toggle
+            const menuToggle = document.getElementById("menu-toggle");
+            const navigation = document.getElementById("navigation");
+    
+            if (menuToggle && navigation) {
+                menuToggle.addEventListener("click", function () {
+                    const expanded = this.getAttribute("aria-expanded") === "true" || false;
+                    navigation.classList.toggle("open");
+                    this.setAttribute("aria-expanded", !expanded);
+                });
+            }
+    
+            // Highlight Active Navigation Link
+            const navLinks = document.querySelectorAll(".nav-menu a");
+    
+            navLinks.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active"); // Adds the "active" class to the current page link
+                }
             });
         });
+    </script>
     
-function scrollToTop(event) {
-    if (window.location.pathname === "/Home.html") {
-        event.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-}
-
-</script>
 
     
 
