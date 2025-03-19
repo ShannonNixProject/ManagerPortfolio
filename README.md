@@ -35,7 +35,7 @@ git clone https://github.com/shannonnix1997/shannon-nix-portfolio.git
 
 📩 Connect With Me
 📧 Email: shannon.r.nix@gmail.com
-🔗 LinkedIn: linkedin.com/in/shannonnix
+
 
 If you're looking for a highly skilled Senior Project Manager specializing in digital transformation, SaaS workflows, and process automation, let's connect! 🚀
 
