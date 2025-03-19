@@ -32,7 +32,7 @@ p, body {
 
 a {
     position: relative;
-    color: #1abc9c;
+    color: #12856F;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
@@ -40,7 +40,7 @@ a {
 
 
 .check-icon {
-    color: #1abc9c; /* Replace this with your exact green hex code */
+    color: #12856F; /* Replace this with your exact green hex code */
     font-size: 1.2em;
 }
 
@@ -86,7 +86,7 @@ header {
     position: absolute;
     top: -40px; /* Keeps it off-screen */
     left: 10px;
-    background: #1abc9c; /* Matches site's blue */
+    background: #12856F; /* Matches site's blue */
     color: #FFFFFF; /* White text */
     padding: 10px 15px;
     font-size: 16px;
@@ -276,7 +276,7 @@ nav {
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #1abc9c;
+    background-color: #12856F;
     color: white;
     border: none;
     border-radius: 50%;
@@ -293,7 +293,7 @@ nav {
 .button {
     display: inline-block;
     padding: 12px 20px;
-    background-color: #1abc9c; /* Match your branding */
+    background-color: #12856F; /* Match your branding */
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -304,7 +304,7 @@ nav {
 }
 
 .button:hover {
-    background-color: #16a085;
+    background-color: #12856F;
     transform: scale(1.05);
 }
 
@@ -345,7 +345,7 @@ h2 {
     color: #2c3e50;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 3px solid #1abc9c;
+    border-bottom: 3px solid #12856F;
     padding-bottom: 10px;
     margin-bottom: 20px;
     text-align: center;
@@ -358,7 +358,7 @@ h2 {
 }
 
 #contact a {
-    color: #1abc9c;
+    color: #12856F;
     text-decoration: none;
     font-weight: bold;
 }
@@ -381,7 +381,7 @@ footer {
 
 /* Footer Links */
 footer a {
-    color: #1abc9c;
+    color: #12856F;
     text-decoration: none;
     font-weight: bold;
 }
