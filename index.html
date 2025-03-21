@@ -274,7 +274,7 @@
 
         document.querySelectorAll(".nav-menu li a").forEach(item => {
             item.addEventListener("click", function (event) {
-                event.preventDefault();
+                //event.preventDefault();
                 const targetId = this.getAttribute("href").substring(1);
                 const targetElement = document.getElementById(targetId);
 
