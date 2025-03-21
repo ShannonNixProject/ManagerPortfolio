@@ -264,75 +264,87 @@
 
  
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const headerOffset = 90;
-      const backToTopButton = document.getElementById("backToTop");
+    document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.querySelector(".hamburger-menu");
       const navMenu = document.querySelector(".nav-menu");
-      const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
-      const sections = document.querySelectorAll("main section[id]");
-  
-      // Hamburger menu toggle
-      if (menuButton && navMenu) {
-        menuButton.addEventListener("click", () => {
-          navMenu.classList.toggle("show");
-        });
-  
-        navLinks.forEach(item => {
-          item.addEventListener("click", function () {
+      const navLinks = document.querySelectorAll(".nav-menu li a");
+      const backToTopButton = document.getElementById("backToTop");
+    
+      // Toggle mobile nav
+      menuButton?.addEventListener("click", function () {
+        navMenu.classList.toggle("show");
+      });
+    
+      // Smooth scroll and close menu on nav link click
+      navLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          const hash = this.getAttribute("href");
+          if (hash.startsWith("#")) {
+            e.preventDefault();
+            const target = document.querySelector(hash);
+            if (target) {
+              const offset = 90;
+              const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+              const offsetPosition = elementPosition - offset;
+    
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+              });
+            }
             navMenu.classList.remove("show");
-          });
+          }
         });
-      }
-  
-      // Scroll to anchor with offset on page load
-      const hash = window.location.hash;
-      if (hash) {
-        const target = document.querySelector(hash);
-        if (target) {
-          setTimeout(() => {
-            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-          }, 300);
-        }
-      }
-  
-      // Back to Top button visibility toggle
+      });
+    
+      // Back to Top
+      window.addEventListener("scroll", function () {
+        backToTopButton.classList.toggle("show", window.scrollY > 200);
+      });
+    
+      backToTopButton?.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    
+      // Set active link based on scroll
+      const sections = document.querySelectorAll("main section[id]");
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 200) {
-          backToTopButton.classList.add("show");
-        } else {
-          backToTopButton.classList.remove("show");
-        }
-  
-        // Highlight active nav link
         let current = "";
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - headerOffset - 10;
+          const sectionTop = section.offsetTop - 150;
           if (window.scrollY >= sectionTop) {
             current = section.getAttribute("id");
           }
         });
-  
+    
         navLinks.forEach(link => {
           const sectionId = link.getAttribute("href").substring(1);
           link.classList.remove("active");
           link.removeAttribute("aria-current");
-  
           if (sectionId === current) {
             link.classList.add("active");
             link.setAttribute("aria-current", "true");
           }
         });
       });
-  
-      // Back to Top smooth scroll
-      backToTopButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+    
+      // If page loads with a hash in the URL
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(() => {
+            const offset = 90;
+            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - offset;
+    
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }, 300);
+        }
+      }
     });
-  </script>
-  
+    </script>
 </body>
-</html>
+</html>    

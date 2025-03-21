@@ -124,76 +124,51 @@
   </footer>
 
    
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const headerOffset = 90;
-      const backToTopButton = document.getElementById("backToTop");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.querySelector(".hamburger-menu");
       const navMenu = document.querySelector(".nav-menu");
-      const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
-      const sections = document.querySelectorAll("main section[id]");
-  
-      // Hamburger menu toggle
-      if (menuButton && navMenu) {
-        menuButton.addEventListener("click", () => {
-          navMenu.classList.toggle("show");
+      const navLinks = document.querySelectorAll(".nav-menu li a");
+      const backToTopButton = document.getElementById("backToTop");
+    
+      // Toggle mobile nav
+      menuButton?.addEventListener("click", function () {
+        navMenu.classList.toggle("show");
+      });
+    
+      // Close mobile nav when link is clicked
+      navLinks.forEach(link => {
+        link.addEventListener("click", function () {
+          navMenu.classList.remove("show");
         });
-  
-        navLinks.forEach(item => {
-          item.addEventListener("click", function () {
-            navMenu.classList.remove("show");
-          });
-        });
-      }
-  
-      // Scroll to anchor with offset on page load
-      const hash = window.location.hash;
-      if (hash) {
-        const target = document.querySelector(hash);
+      });
+    
+      // Back to Top
+      window.addEventListener("scroll", function () {
+        backToTopButton.classList.toggle("show", window.scrollY > 200);
+      });
+    
+      backToTopButton?.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    
+      // Handle hash on load (if anchor present on that page)
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
         if (target) {
           setTimeout(() => {
+            const offset = 90;
             const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            const offsetPosition = elementPosition - offset;
+    
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
           }, 300);
         }
       }
-  
-      // Back to Top button visibility toggle
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 200) {
-          backToTopButton.classList.add("show");
-        } else {
-          backToTopButton.classList.remove("show");
-        }
-  
-        // Highlight active nav link
-        let current = "";
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - headerOffset - 10;
-          if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
-          }
-        });
-  
-        navLinks.forEach(link => {
-          const sectionId = link.getAttribute("href").substring(1);
-          link.classList.remove("active");
-          link.removeAttribute("aria-current");
-  
-          if (sectionId === current) {
-            link.classList.add("active");
-            link.setAttribute("aria-current", "true");
-          }
-        });
-      });
-  
-      // Back to Top smooth scroll
-      backToTopButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
     });
-  </script>
-  
-</body>
-</html>
+    </script>
+    </body>
+    </html>
