@@ -29,7 +29,7 @@
 
             <!-- Navigation Menu -->
             <ul class="nav-menu" id="navigation">
-                <li ><a href="/index.html">Home</a></li>
+                <li ><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#employment">Employment</a></li>
@@ -254,15 +254,12 @@
     <p class="signature">Shannon Nix</p>
     </section>
 
-   
+</main>
 
 <!-- Back to Top Button -->
 <button id="backToTop" title="Back to Top of page" aria-label="Back to Top of page">
     <span aria-hidden="true">↑</span>
 </button>
-
-
-</main>
 <footer id="footer"><p class="copyright">Site created by Shannon Nix using Visual Studio Code, HTML, CSS, Javascript, & Github</p></footer>
 
  
@@ -334,6 +331,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150; // adjust for sticky header
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            const sectionId = link.getAttribute("href").substring(1);
+
+            link.classList.remove("active");
+            link.removeAttribute("aria-current");
+
+            if (sectionId === current) {
+                link.classList.add("active");
+                link.setAttribute("aria-current", "true");
+            }
+        });
+    });
+});
 
 </script>
 </body>

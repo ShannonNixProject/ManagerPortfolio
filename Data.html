@@ -137,12 +137,13 @@
         </section>
         
         
-       <!-- Back to Top Button -->
+   
+
+    </main>
+        <!-- Back to Top Button -->
 <button id="backToTop" title="Back to Top of page" aria-label="Back to Top of page">
     <span aria-hidden="true">↑</span>
 </button>
-
-    </main>
 
     <footer>
         <p>Site created by Shannon Nix using Visual Studio Code, HTML, CSS, JavaScript, & GitHub</p>
@@ -183,9 +184,33 @@ function scrollToTop(event) {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTopButton = document.getElementById("backToTop");
+
+    if (!backToTopButton) return;
+
+    // Show/hide button on scroll
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 200) {
+            backToTopButton.classList.add("show");
+        } else {
+            backToTopButton.classList.remove("show");
+        }
+    });
+
+    // Scroll to top on click
+    backToTopButton.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
 </script>
 
-    </script>
+    
 
 </body>
 </html>
