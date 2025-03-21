@@ -358,6 +358,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+// Wait until DOM is fully loaded
+window.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) {
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: "smooth" });
+      }, 200); // slight delay allows content to render
+    }
+  }
+});
+
 
 </script>
 </body>
