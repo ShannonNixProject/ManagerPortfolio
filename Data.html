@@ -121,44 +121,77 @@
     <p>Site created by Shannon Nix using Visual Studio Code, HTML, CSS, JavaScript, & GitHub</p>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+   
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const headerOffset = 90;
+      const backToTopButton = document.getElementById("backToTop");
       const menuButton = document.querySelector(".hamburger-menu");
       const navMenu = document.querySelector(".nav-menu");
-
-      menuButton.addEventListener("click", function () {
-        navMenu.classList.toggle("show");
-      });
-
-      document.querySelectorAll(".nav-menu li a").forEach(item => {
-        item.addEventListener("click", function () {
-          navMenu.classList.remove("show");
+      const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
+      const sections = document.querySelectorAll("main section[id]");
+  
+      // Hamburger menu toggle
+      if (menuButton && navMenu) {
+        menuButton.addEventListener("click", () => {
+          navMenu.classList.toggle("show");
         });
-      });
-
-      const backToTopButton = document.getElementById("backToTop");
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 200) {
-          backToTopButton.classList.add("show");
-        } else {
-          backToTopButton.classList.remove("show");
-        }
-      });
-
-      backToTopButton.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
+  
+        navLinks.forEach(item => {
+          item.addEventListener("click", function () {
+            navMenu.classList.remove("show");
+          });
+        });
+      }
+  
+      // Scroll to anchor with offset on page load
       const hash = window.location.hash;
       if (hash) {
         const target = document.querySelector(hash);
         if (target) {
           setTimeout(() => {
-            target.scrollIntoView({ behavior: "smooth" });
-          }, 200);
+            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          }, 300);
         }
       }
+  
+      // Back to Top button visibility toggle
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          backToTopButton.classList.add("show");
+        } else {
+          backToTopButton.classList.remove("show");
+        }
+  
+        // Highlight active nav link
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - headerOffset - 10;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+  
+        navLinks.forEach(link => {
+          const sectionId = link.getAttribute("href").substring(1);
+          link.classList.remove("active");
+          link.removeAttribute("aria-current");
+  
+          if (sectionId === current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "true");
+          }
+        });
+      });
+  
+      // Back to Top smooth scroll
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     });
   </script>
+  
 </body>
 </html>
