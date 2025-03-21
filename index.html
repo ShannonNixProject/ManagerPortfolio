@@ -220,8 +220,8 @@
         <li>Collaboration & Cross-Functional Coordination</li>
         <li>Negotiation & Persuasion</li>
     </ul>
-    
-    <h2 id="education">Education</h2>
+    <section id="education"></section>
+    <h2>Education</h2>
     <p>Bachelor of Arts – Administrative Leadership, University of Oklahoma | GPA: 3.55</p>
     
     <h2>Certifications</h2>
@@ -264,126 +264,75 @@
 
  
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const menuButton = document.querySelector(".hamburger-menu");
-        const navMenu = document.querySelector(".nav-menu");
-
-        menuButton.addEventListener("click", function () {
-            navMenu.classList.toggle("show");
+    document.addEventListener("DOMContentLoaded", () => {
+      const headerOffset = 90;
+      const backToTopButton = document.getElementById("backToTop");
+      const menuButton = document.querySelector(".hamburger-menu");
+      const navMenu = document.querySelector(".nav-menu");
+      const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
+      const sections = document.querySelectorAll("main section[id]");
+  
+      // Hamburger menu toggle
+      if (menuButton && navMenu) {
+        menuButton.addEventListener("click", () => {
+          navMenu.classList.toggle("show");
         });
-
-        document.querySelectorAll(".nav-menu li a").forEach(item => {
-            item.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const targetId = this.getAttribute("href").substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 50,
-                        behavior: "smooth"
-                    });
-                }
-
-                navMenu.classList.remove("show");
-            });
+  
+        navLinks.forEach(item => {
+          item.addEventListener("click", function () {
+            navMenu.classList.remove("show");
+          });
         });
-
-        // Force the page to start at the top on refresh
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 100);
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-const backToTopButton = document.getElementById("backToTop");
-
-// Show button when scrolling down
-window.addEventListener("scroll", function () {
-    if (window.scrollY > 200) { // Adjust this value as needed
-        backToTopButton.classList.add("show");
-    } else {
-        backToTopButton.classList.remove("show");
-    }
-});
-
-// Scroll to top smoothly when clicked
-backToTopButton.addEventListener("click", function () {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
-});
-document.getElementById('menu-toggle').addEventListener('click', function() {
-    const nav = document.getElementById('navigation');
-    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-    
-    nav.classList.toggle('open');
-    this.setAttribute('aria-expanded', !expanded);
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const navLinks = document.querySelectorAll(".nav-menu a");
-
-    navLinks.forEach(link => {
-        if (link.href === window.location.href) {
-            link.classList.add("active"); // Adds the "active" class to the current page link
+      }
+  
+      // Scroll to anchor with offset on page load
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          setTimeout(() => {
+            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          }, 300);
         }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("main section[id]");
-    const navLinks = document.querySelectorAll(".nav-menu a[href^='#']");
-
-    window.addEventListener("scroll", () => {
+      }
+  
+      // Back to Top button visibility toggle
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          backToTopButton.classList.add("show");
+        } else {
+          backToTopButton.classList.remove("show");
+        }
+  
+        // Highlight active nav link
         let current = "";
-
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150; // adjust for sticky header
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute("id");
-            }
+          const sectionTop = section.offsetTop - headerOffset - 10;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
         });
-
+  
         navLinks.forEach(link => {
-            const sectionId = link.getAttribute("href").substring(1);
-
-            link.classList.remove("active");
-            link.removeAttribute("aria-current");
-
-            if (sectionId === current) {
-                link.classList.add("active");
-                link.setAttribute("aria-current", "true");
-            }
+          const sectionId = link.getAttribute("href").substring(1);
+          link.classList.remove("active");
+          link.removeAttribute("aria-current");
+  
+          if (sectionId === current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "true");
+          }
         });
+      });
+  
+      // Back to Top smooth scroll
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     });
-});
-// Wait until DOM is fully loaded
-window.addEventListener("DOMContentLoaded", () => {
-  const hash = window.location.hash;
-  if (hash) {
-    const target = document.querySelector(hash);
-    if (target) {
-      setTimeout(() => {
-        target.scrollIntoView({ behavior: "smooth" });
-      }, 200); // slight delay allows content to render
-    }
-  }
-});
-window.addEventListener("DOMContentLoaded", () => {
-  const hash = window.location.hash;
-  if (hash) {
-    const target = document.querySelector(hash);
-    if (target) {
-      // Delay to let the page fully render
-      setTimeout(() => {
-        target.scrollIntoView({ behavior: "smooth" });
-      }, 300); // Adjust timing if needed
-    }
-  }
-});
-
-
-</script>
+  </script>
+  
 </body>
 </html>
