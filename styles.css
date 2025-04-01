@@ -606,7 +606,7 @@ footer a:hover {
 .nav-menu li a[aria-current="true"] {
     color: #ffffff !important;
     border-bottom: 3px solid #1abc9c !important;
-    background: rgba(255, 255, 255, 0.2) !important;
+    
 }
 
 
