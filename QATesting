@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA Testing for Web & Mobile Accessibility Compliance</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header id="home">
+        <nav aria-label="Skip navigation">
+            <a href="#main-content" class="skip-link">Skip to Main Content</a>
+            <a href="#navigation" class="skip-link">Skip to Navigation</a>
+            <a href="#footer" class="skip-link">Skip to Footer</a>
+        </nav>
+        <nav>
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" aria-label="Toggle navigation" aria-controls="navigation" aria-expanded="false">&#9776;</button>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navigation">
+                <li ><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#employment">Employment</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#volunteer">Volunteer</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <h1>QA Testing for Web & Mobile Accessibility Compliance</h1>
+            <p class="subtitle">Ensuring Inclusive User Experience Across Platforms</p>
+        </section>
+
+        <section>
+            <h2>Overview</h2>
+            <p>In 2023, I led a web and mobile accessibility QA initiative for a national organization seeking to meet WCAG 2.1 AA compliance. The organization was rolling out a multi-platform product refresh and needed assurance that its digital properties were inclusive, legally compliant, and user-friendly for all, including individuals with visual, auditory, or mobility impairments. This project required collaboration across QA, development, UX, and compliance teams to ensure issues were identified, communicated, and remediated within tight release windows.</p>
+        </section>
+
+        <section>
+            <h2>Challenge</h2>
+            <p>Accessibility testing had previously been deprioritized, resulting in widespread issues such as poor contrast ratios, inaccessible form fields, broken focus states, and ARIA misusage. The team lacked standardized testing processes and familiarity with WCAG requirements, and no structured workflow existed to triage or validate fixes. These gaps exposed the organization to legal risks and user dissatisfaction.</p>
+        </section>
+
+        <section>
+            <h2>Solution</h2>
+            <ul>
+                <li>Performed accessibility audits using axe DevTools, WAVE, and Lighthouse across desktop and mobile environments.</li>
+                <li>Executed manual testing using NVDA and VoiceOver to assess screen reader compatibility across key user flows.</li>
+                <li>Verified focus order, tab navigation, ARIA attributes, color contrast, and skip links to ensure keyboard usability.</li>
+                <li>Developed a comprehensive bug-reporting system using Jira with reproduction steps, severity ratings, and visual proof.</li>
+                <li>Held sprint-based QA walkthroughs to validate issue resolution and supported developers in real time during remediation.</li>
+                <li>Created internal training materials and led accessibility workshops to raise awareness and build internal capabilities.</li>
+                <li>Documented an accessibility testing checklist based on WCAG guidelines for future QA team use.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Tools Used</h2>
+            <ul>
+                <li>axe DevTools, WAVE, Lighthouse</li>
+                <li>NVDA, VoiceOver (screen readers)</li>
+                <li>Chrome DevTools</li>
+                <li>Jira (bug tracking and sprint planning)</li>
+                <li>HTML, CSS, ARIA roles and landmarks</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Impact</h2>
+            <ul>
+                <li><strong>Resolved 90% of critical accessibility issues</strong> pre-launch, avoiding compliance fines and delays.</li>
+                <li><strong>Improved user experience</strong> for screen reader and keyboard-only users across all pages.</li>
+                <li><strong>Developed reusable QA processes and tools</strong> that enhanced long-term test coverage and efficiency.</li>
+                <li><strong>Boosted team awareness</strong> of accessibility best practices through training and documentation.</li>
+                <li><strong>Established a culture of accessibility</strong> within the development cycle for future product iterations.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Reflection</h2>
+            <p>This project was a turning point in my QA career—it proved that quality and accessibility are not separate tracks, but deeply interconnected. Beyond testing, I became a bridge between users, developers, and compliance stakeholders. I saw firsthand how thoughtful, standards-driven testing can transform digital experiences and make products usable for everyone. That’s the kind of impact I strive to make on every project.</p>
+        </section>
+    </main>
+
+    <button id="backToTop" title="Back to Top of page" aria-label="Back to Top of page">
+        <span aria-hidden="true">↑</span>
+    </button>
+
+    <footer id="footer">
+        <p class="copyright">Site created by Shannon Nix using Visual Studio Code, HTML, CSS, Javascript, & Github</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.querySelector(".hamburger-menu");
+            const navMenu = document.querySelector(".nav-menu");
+            const navLinks = document.querySelectorAll(".nav-menu li a");
+            const backToTopButton = document.getElementById("backToTop");
+
+            // Toggle mobile nav
+            menuButton?.addEventListener("click", function () {
+                navMenu.classList.toggle("show");
+            });
+
+            // Smooth scroll and close menu on nav link click
+            navLinks.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    const hash = this.getAttribute("href");
+                    if (hash.startsWith("#")) {
+                        e.preventDefault();
+                        const target = document.querySelector(hash);
+                        if (target) {
+                            const offset = 90;
+                            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                            const offsetPosition = elementPosition - offset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                        navMenu.classList.remove("show");
+                    }
+                });
+            });
+
+            // Back to Top
+            window.addEventListener("scroll", function () {
+                backToTopButton.classList.toggle("show", window.scrollY > 200);
+            });
+
+            backToTopButton?.addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            // Highlight current section link
+            const sections = document.querySelectorAll("main section[id]");
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    const sectionId = link.getAttribute("href").substring(1);
+                    link.classList.remove("active");
+                    link.removeAttribute("aria-current");
+                    if (sectionId === current) {
+                        link.classList.add("active");
+                        link.setAttribute("aria-current", "true");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
