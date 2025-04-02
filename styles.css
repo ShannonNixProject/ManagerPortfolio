@@ -9,8 +9,17 @@ body {
         background-size: cover;
         
     
-}
-
+}.skills-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .skills-grid-2x2 section {
+    padding: 10px;
+  }
+  
+  
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 
@@ -604,9 +613,9 @@ footer a:hover {
 
 .nav-menu li a.active,
 .nav-menu li a[aria-current="true"] {
-    color: #ffffff !important;
+    color: #1abc9c !important;
     border-bottom: 3px solid #1abc9c !important;
-    
+    background: rgba(255, 255, 255, 0.2) !important;
 }
 
 
