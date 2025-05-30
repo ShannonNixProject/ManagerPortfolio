@@ -18,8 +18,72 @@ body {
   .skills-grid-2x2 section {
     padding: 10px;
   }
+  .button-link {
+    transform: translateY(-2px);
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #12856F;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
   
+  .button-link:hover,
+.button-link:focus {
+  background-color: #0f6c5a;
   
+ 
+}
+
+  
+  .button-link:focus {
+    box-shadow: 0 0 0 3px rgba(18, 133, 111, 0.5), 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  #projects article {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #ccc; /* Increased border thickness */
+  }
+  
+#skills section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#skills section .card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px; /* Card width */
+}
+
+#skills section .card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+#skills section .card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#skills section .card ul li {
+  margin-bottom: 0.5rem;
+}
+
+    
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 
@@ -234,7 +298,11 @@ nav {
 
     .hamburger-menu {
         display: block;
-
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 1001;
     }
 
     .nav-menu {
@@ -242,7 +310,8 @@ nav {
         flex-direction: column;
         position: absolute;
         top: 100%;
-        right: 0;
+        left: 50%; /* Centering horizontally */
+        transform: translateX(-50%); /* Adjusts the position to the center */
         width: 100%;
         background-color: #2c3e50;
         text-align: center;
@@ -252,7 +321,7 @@ nav {
 
     .nav-menu.show {
         display: flex;
-        align-items: center; /* Center menu items */
+        align-items: center; /* Center items */
         justify-content: center;
     }
 
@@ -269,13 +338,32 @@ nav {
     }
 }
 
+
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 120px 20px; /* Adjusted for spacing */
+    padding: 120px; /* Adjusted for spacing */
     background-color: #2c3e50;
     color: white;
-    margin-top: 100px; /* Creates space between header and hero */
+    margin-top: 0; /* Ensure no margin at the top */
+    width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 0; /* No rounded corners */
+}
+
+/* Prevent any unintentional margin or padding on the body or html */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Make sure no parent container has width restrictions */
+main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Hero Text */
@@ -439,6 +527,27 @@ footer a:hover {
     text-decoration: underline;
 }
 
+.button-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #12856F;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-link:hover,
+.button-link:focus {
+  background-color: #12856F;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
 
 
 /* Responsive Fixes */
@@ -451,6 +560,18 @@ footer a:hover {
     .hero h1 {
         font-size: 36px;
     }
+
+    h1 {
+        font-size: 32px; /* Smaller font size for mobile */
+        line-height: 1.2; /* Adjust line height for better spacing */
+        word-wrap: break-word; /* Ensures long words break properly */
+    }
+
+    .signature_hero {
+        font-size: 36px; /* Adjust size for the signature on smaller screens */
+    }
+}
+
     
 
     .hero p {
@@ -485,7 +606,7 @@ footer a:hover {
         font-size: 18px;
         width: 100%;
     }
-}
+
 
 @media (max-width: 480px) {
     .hero {
@@ -497,6 +618,14 @@ footer a:hover {
         font-size: 32px;
     }
 
+    h1 {
+        font-size: 28px; /* Even smaller font size for very small screens */
+    }
+
+    .signature_hero {
+        font-size: 30px; /* Signature text size adjustment */
+    }
+}
     .hero p {
         font-size: 18px;
     }
@@ -537,7 +666,7 @@ footer a:hover {
         font-size: 16px;
         width: 100%;
     }
-}
+
 
 
 /* Base (desktop) navigation setup */
@@ -618,5 +747,59 @@ footer a:hover {
     background: rgba(255, 255, 255, 0.2) !important;
 }
 
+/* Specific Adjustments for 320px Screens */
+@media (max-width: 320px) {
+    header {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+        height: 70px; /* Reduce height for smaller screens */
+    }
 
+    .hamburger-menu {
+        font-size: 24px; /* Smaller hamburger menu icon */
+        right: 10px; /* Adjust right position */
+    }
 
+    .nav-menu {
+        left: 50%; /* Keep centered horizontally */
+        transform: translateX(-50%); /* Ensure proper centering */
+        padding: 10px 0; /* Reduced padding for smaller screens */
+    }
+
+    .nav-menu li {
+        padding: 10px 0; /* Smaller padding for menu items */
+    }
+
+    .nav-menu li a {
+        font-size: 16px; /* Reduce font size for smaller screens */
+    }
+
+    /* Make the hamburger menu icon size more suitable for 320px */
+    .hamburger-menu {
+        font-size: 24px; /* Slightly smaller icon for small screens */
+    }
+}
+
+/* Sections */
+section {
+    max-width: 1200px;
+    margin: 50px auto;
+    background: white;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    scroll-margin-top: 100px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Adjusting margin to reduce space between sections */
+#employment {
+    margin-top: 20px; /* Reduces space before the Employment section */
+}
+
+/* Other sections that may have too much space */
+#about, #projects, #skills, #education {
+    margin-bottom: 20px; /* Adjust bottom margin if needed */
+}
